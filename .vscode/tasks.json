@@ -4,7 +4,7 @@
     {
       "label": "build",
       "type": "shell",
-      "command": "yarn build-dev",
+      "command": "npm run start",
       "isBackground": true
     }
   ]
