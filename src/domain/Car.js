@@ -1,9 +1,13 @@
+const CAR = Object.freeze({
+  MIN_NAME_LENGTH: 1,
+  MAX_NAME_LENGTH: 5,
+});
+
+const ERROR = Object.freeze({
+  VALID_NAME_LENGTH: `자동차의 이름은 최소 ${CAR.MIN_NAME_LENGTH}자, 최대 ${CAR.MAX_NAME_LENGTH}자입니다.`,
+});
+
 class Car {
-  static MIN_NAME_LENGTH = 1;
-  static MAX_NAME_LENGTH = 5;
-
-  static VALID_NAME_LENGTH = `자동차의 이름은 최소 ${Car.MIN_NAME_LENGTH}자, 최대 ${Car.MAX_NAME_LENGTH}자입니다.`;
-
   #name;
   #position;
 
@@ -16,12 +20,12 @@ class Car {
 
   static #validateCarName(name) {
     if (!Car.#isValidNameLength(name)) {
-      throw new Error(Car.VALID_NAME_LENGTH);
+      throw new Error(ERROR.VALID_NAME_LENGTH);
     }
   }
 
   static #isValidNameLength(name) {
-    return [...name].length >= Car.MIN_NAME_LENGTH && [...name].length <= Car.MAX_NAME_LENGTH;
+    return [...name].length >= CAR.MIN_NAME_LENGTH && [...name].length <= CAR.MAX_NAME_LENGTH;
   }
 
   move() {

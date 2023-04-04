@@ -1,14 +1,18 @@
 import { randomNumberBetween } from '../util/Random';
 import Car from './Car';
 
+const RACE = Object.freeze({
+  MIN_RANDOM_NUMBER: 0,
+  MAX_RANDOM_NUMBER: 9,
+  MOVE_CONDITION: 4,
+});
+
+const ERROR = Object.freeze({
+  STEP_NOT_INTEGER: '시도할 횟수는 정수여야합니다.',
+  STEP_NOT_POSITIVE: '시도할 횟수는 양의 정수를 입력해주세요.',
+});
+
 class Race {
-  static RANDOM_NUMBER_MIN = 0;
-  static RANDOM_NUMBER_MAX = 9;
-  static MOVE_CONDITION = 4;
-
-  static STEP_IS_NOT_INTEGER = '시도할 횟수는 정수여야합니다.';
-  static STEP_IS_NOT_POSITIVE = '시도할 횟수는 양의 정수를 입력해주세요.';
-
   #cars;
   #raceStep;
 
@@ -24,11 +28,11 @@ class Race {
 
   static #validateRaceStep(raceStep) {
     if (!Race.#isInteger(raceStep)) {
-      throw new Error(Race.STEP_IS_NOT_INTEGER);
+      throw new Error(ERROR.STEP_NOT_INTEGER);
     }
 
     if (!Race.#isPositive(raceStep)) {
-      throw new Error(Race.STEP_IS_NOT_POSITIVE);
+      throw new Error(ERROR.STEP_NOT_POSITIVE);
     }
   }
 
@@ -46,9 +50,9 @@ class Race {
 
   moveOneStep() {
     this.#cars.forEach((car) => {
-      const randomNumber = randomNumberBetween(Race.RANDOM_NUMBER_MIN, Race.RANDOM_NUMBER_MAX);
+      const randomNumber = randomNumberBetween(RACE.MIN_RANDOM_NUMBER, RACE.MAX_RANDOM_NUMBER);
 
-      if (randomNumber >= Race.MOVE_CONDITION) car.move();
+      if (randomNumber >= RACE.MOVE_CONDITION) car.move();
     });
 
     this.#raceStep -= 1;
