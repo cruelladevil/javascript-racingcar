@@ -1,4 +1,5 @@
 import { randomNumberBetween } from '../util/Random';
+import { isInteger, isPositive } from '../util/number';
 import Car from './Car';
 
 const RACE = Object.freeze({
@@ -27,21 +28,9 @@ class Race {
   }
 
   static #validateRaceStep(raceStep) {
-    if (!Race.#isInteger(raceStep)) {
-      throw new Error(ERROR.STEP_NOT_INTEGER);
-    }
+    if (!isInteger(raceStep)) throw new Error(ERROR.STEP_NOT_INTEGER);
 
-    if (!Race.#isPositive(raceStep)) {
-      throw new Error(ERROR.STEP_NOT_POSITIVE);
-    }
-  }
-
-  static #isInteger(raceStep) {
-    return Number.isInteger(raceStep);
-  }
-
-  static #isPositive(raceStep) {
-    return raceStep > 0;
+    if (!isPositive(raceStep)) throw new Error(ERROR.STEP_NOT_POSITIVE);
   }
 
   isRaceEnd() {
