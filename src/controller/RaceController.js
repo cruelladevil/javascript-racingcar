@@ -1,6 +1,6 @@
 import Race from '../domain/Race';
-import InputView from '../view/InputView';
-import OutputView from '../view/OutputView';
+import { close, readCarNames, readRaceStep } from '../view/Input';
+import { printRaceState, printRaceTitle, printWinners } from '../view/Output';
 
 class RaceController {
   #race;
@@ -10,29 +10,29 @@ class RaceController {
   }
 
   async setRaceCars() {
-    const carNames = await InputView.readCarNames();
+    const carNames = await readCarNames();
 
     this.#race.setRaceCars(carNames);
   }
 
   async setRaceStep() {
-    const raceStep = await InputView.readRaceStep();
+    const raceStep = await readRaceStep();
 
     this.#race.setRaceStep(raceStep);
   }
 
   startRace() {
-    OutputView.printRaceTitle();
+    printRaceTitle();
 
     while (!this.#race.isRaceEnd()) {
       this.#race.moveOneStep();
-      OutputView.printRaceState(this.#race.getRaceStates());
+      printRaceState(this.#race.getRaceStates());
     }
   }
 
   endRace() {
-    OutputView.printWinners(this.#race.findWinnerNames());
-    InputView.close();
+    printWinners(this.#race.findWinnerNames());
+    close();
   }
 }
 

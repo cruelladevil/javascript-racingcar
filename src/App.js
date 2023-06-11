@@ -1,5 +1,5 @@
 import RaceController from './controller/RaceController';
-import OutputView from './view/OutputView';
+import { printError } from './view/Output';
 
 class App {
   #raceController;
@@ -17,7 +17,7 @@ class App {
       await this.#raceController.setRaceCars();
       await this.setRaceStep();
     } catch (error) {
-      OutputView.printError(error);
+      printError(error);
       this.setRaceCars();
     }
   }
@@ -27,7 +27,7 @@ class App {
       await this.#raceController.setRaceStep();
       this.startRace();
     } catch (error) {
-      OutputView.printError(error);
+      printError(error);
       this.setRaceStep();
     }
   }
