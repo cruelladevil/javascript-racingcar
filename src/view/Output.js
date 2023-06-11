@@ -1,9 +1,9 @@
 import Console from '../util/Console';
+import ERROR from '../constants/Error';
+import { MESSAGE } from '../constants/Message';
 
-const EMPTY_LINE = '';
-const ERROR_MESSAGE_PREFIX = '[ERROR]';
-const RACE_RESULT_TITLE = '실행 결과';
-const WINNER_MESSAGE_SUFFIX = '가 최종 우승했습니다.';
+const { WINNER_MESSAGE_SUFFIX, EMPTY_LINE, RACE_RESULT_TITLE } = MESSAGE;
+const { PREFIX } = ERROR;
 
 const printWinners = (winnerNames) => {
   Console.print(`${winnerNames.join(', ')}${WINNER_MESSAGE_SUFFIX}`);
@@ -23,7 +23,7 @@ const printRaceState = (raceStates) => {
 };
 
 const printError = (error) => {
-  Console.print(`${ERROR_MESSAGE_PREFIX} ${error.message}`);
+  Console.print(`${PREFIX} ${error.message}`);
 };
 
 export { printWinners, printRaceTitle, printRaceState, printError };
