@@ -17,7 +17,7 @@ class Race {
   #cars;
   #raceStep;
 
-  constructor(carNames) {
+  setRaceCars(carNames) {
     this.#cars = carNames.map((name) => new Car(name));
   }
 

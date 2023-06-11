@@ -1,43 +1,39 @@
 import RaceController from './controller/RaceController';
+import OutputView from './view/OutputView';
 
 class App {
   #raceController;
 
-  play() {
+  constructor() {
     this.#raceController = new RaceController();
-    this.setRace();
   }
 
-  setRace() {
+  play() {
     this.setRaceCars();
   }
 
-  setRaceCars() {
-    this.#raceController
-      .setRaceCars()
-      .then(() => this.setRaceStep())
-      .catch((error) => {
-        RaceController.handleSetRaceCarsError(error);
-        this.setRaceCars();
-      });
+  async setRaceCars() {
+    try {
+      await this.#raceController.setRaceCars();
+      await this.setRaceStep();
+    } catch (error) {
+      OutputView.printError(error);
+      this.setRaceCars();
+    }
   }
 
-  setRaceStep() {
-    this.#raceController
-      .setRaceStep()
-      .then(() => this.startRace())
-      .catch((error) => {
-        RaceController.handleSetRaceStepError(error);
-        this.setRaceStep();
-      });
+  async setRaceStep() {
+    try {
+      await this.#raceController.setRaceStep();
+      this.startRace();
+    } catch (error) {
+      OutputView.printError(error);
+      this.setRaceStep();
+    }
   }
 
   startRace() {
     this.#raceController.startRace();
-    this.endRace();
-  }
-
-  endRace() {
     this.#raceController.endRace();
   }
 }
