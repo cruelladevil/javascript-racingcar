@@ -1,3 +1,5 @@
+import CAR from '../src/constants/Car';
+import ERROR from '../src/constants/Error';
 import Car from '../src/domain/Car';
 
 describe('Car 객체 생성의 validation 테스트입니다.', () => {
@@ -12,7 +14,7 @@ describe('Car 객체 생성의 validation 테스트입니다.', () => {
     expect(createCar).not.toThrow();
   });
 
-  test(`자동차의 이름이 ${Car.MIN_NAME_LENGTH}자 이하일 경우 예외를 던진다.`, () => {
+  test(`자동차의 이름이 ${CAR.NAME_LENGTH_MIN}자 이하일 경우 예외를 던진다.`, () => {
     // given
     const emptyCarName = '';
 
@@ -20,10 +22,10 @@ describe('Car 객체 생성의 validation 테스트입니다.', () => {
     const createEmptyNameCar = () => new Car(emptyCarName);
 
     // then
-    expect(createEmptyNameCar).toThrow(Car.VALID_NAME_LENGTH);
+    expect(createEmptyNameCar).toThrow(ERROR.VALID_NAME_LENGTH);
   });
 
-  test(`자동차의 이름은 ${Car.MAX_NAME_LENGTH}자 이상일 경우 예외를 던진다.`, () => {
+  test(`자동차의 이름은 ${CAR.NAME_LENGTH_MAX}자 이상일 경우 예외를 던진다.`, () => {
     // given
     const longName = 'conana';
 
@@ -31,7 +33,7 @@ describe('Car 객체 생성의 validation 테스트입니다.', () => {
     const createLongNameCar = () => new Car(longName);
 
     // then
-    expect(createLongNameCar).toThrow(Car.VALID_NAME_LENGTH);
+    expect(createLongNameCar).toThrow(ERROR.VALID_NAME_LENGTH);
   });
 });
 
