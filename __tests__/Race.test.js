@@ -41,10 +41,11 @@ describe('Race 객체 생성의 validation 테스트입니다.', () => {
 describe('Race 객체 메서드 테스트입니다.', () => {
   test('isRaceEnd - 레이스가 끝나지 않은 경우 false를 반환한다.', () => {
     // given
-    const race = new Race(['pobi', 'conan']);
+    const race = new Race();
     const raceStep = 1;
 
     // when
+    race.setRaceCars(['pobi', 'conan']);
     race.setRaceStep(raceStep);
 
     // then
@@ -53,11 +54,13 @@ describe('Race 객체 메서드 테스트입니다.', () => {
 
   test('isRaceEnd - 레이스가 끝난 경우 true를 반환한다.', () => {
     // given
-    const race = new Race(['pobi', 'conan']);
+    const race = new Race();
     const raceStep = 2;
 
     // when
+    race.setRaceCars(['pobi', 'conan']);
     race.setRaceStep(raceStep);
+
     Array.from({ length: raceStep }).forEach(() => {
       race.moveOneStep();
     });
