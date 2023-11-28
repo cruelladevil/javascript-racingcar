@@ -1,5 +1,4 @@
 import randomNumberBetween from '../util/Random';
-import { isInteger, isPositive } from '../util/number';
 import Car from './Car';
 import ERROR from '../constants/Error';
 import RACE from '../constants/Race';
@@ -22,9 +21,13 @@ class Race {
   }
 
   static #validateRaceStep(raceStep) {
-    if (!isInteger(raceStep)) throw new Error(STEP_NOT_INTEGER);
+    if (!Number.isInteger(raceStep)) {
+      throw new Error(STEP_NOT_INTEGER);
+    }
 
-    if (!isPositive(raceStep)) throw new Error(STEP_NOT_POSITIVE);
+    if (raceStep <= 0) {
+      throw new Error(STEP_NOT_POSITIVE);
+    }
   }
 
   isRaceEnd() {
