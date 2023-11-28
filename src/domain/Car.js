@@ -36,12 +36,12 @@ class Car {
     return { name, position };
   }
 
-  isFarPosition(other) {
-    return this.#position > other.#position;
+  isFarPosition(otherCar) {
+    return this.#position > otherCar.#position;
   }
 
-  isSamePosition(other) {
-    return this.#position === other.#position;
+  isSamePosition(otherCar) {
+    return this.#position === otherCar.#position;
   }
 
   getName() {

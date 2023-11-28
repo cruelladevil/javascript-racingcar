@@ -1,5 +1,5 @@
-const randomNumberBetween = (min, max) => {
+const generateRandomNumberBetween = (min, max) => {
   return min + Math.floor(Math.random() * max);
 };
 
-export default randomNumberBetween;
+export default generateRandomNumberBetween;

@@ -1,4 +1,4 @@
-import randomNumberBetween from '../util/Random';
+import generateRandomNumberBetween from '../util/Random';
 import Car from './Car';
 import ERROR from '../constants/Error';
 import RACE from '../constants/Race';
@@ -36,7 +36,7 @@ class Race {
 
   moveOneStep() {
     this.#cars.forEach((car) => {
-      const randomNumber = randomNumberBetween(RANDOM_NUMBER_MIN, RANDOM_NUMBER_MAX);
+      const randomNumber = generateRandomNumberBetween(RANDOM_NUMBER_MIN, RANDOM_NUMBER_MAX);
 
       if (randomNumber >= MOVE_CONDITION) car.move();
     });
