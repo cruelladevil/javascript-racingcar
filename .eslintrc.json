@@ -12,7 +12,8 @@
   "rules": {
     "max-lines-per-function": ["warn", { "max": 10 }],
     "max-depth": ["warn", { "max": 2 }],
-    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "prettier/prettier": ["error", { "endOfLine": "lf" }]
   },
   "overrides": [
     {
