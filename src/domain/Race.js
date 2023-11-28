@@ -1,4 +1,4 @@
-import { randomNumberBetween } from '../util/Random';
+import randomNumberBetween from '../util/Random';
 import { isInteger, isPositive } from '../util/number';
 import Car from './Car';
 import ERROR from '../constants/Error';
